@@ -6,35 +6,41 @@ body {
     background-color: #0d1117;
     color: #c9d1d9;
     line-height: 1.6;
+    scroll-behavior: smooth;
+    /* Soepel scrollen */
 }
 
 a {
     color: #58a6ff;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 a:hover {
     color: #1f6feb;
+    transform: scale(1.1);
 }
 
 /* Header */
 header {
     text-align: center;
     padding: 50px 20px;
-    background: #161b22;
+    background: linear-gradient(145deg, #161b22, #21252d);
     border-bottom: 1px solid #30363d;
+    animation: fadeInDown 1s ease-in-out;
 }
 
 header h1 {
     font-size: 3rem;
     margin-bottom: 10px;
     color: #ffffff;
+    animation: textGlow 3s infinite ease-in-out;
 }
 
 header p {
     font-size: 1.2rem;
     color: #8b949e;
+    animation: fadeIn 1.5s ease;
 }
 
 /* Portfolio Sectie */
@@ -48,16 +54,18 @@ header p {
 }
 
 .portfolio-item {
-    background: #161b22;
+    background: linear-gradient(145deg, #161b22, #1c1f26);
     border: 1px solid #30363d;
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+    position: relative;
 }
 
 .portfolio-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(145deg, #1c1f26, #21252d);
 }
 
 .portfolio-item iframe {
@@ -74,47 +82,132 @@ header p {
     font-size: 1.4rem;
     color: #ffffff;
     margin: 0 0 10px;
+    animation: fadeInUp 1.5s ease;
 }
 
 .portfolio-item .info p {
     font-size: 1rem;
     color: #8b949e;
+    animation: fadeInUp 2s ease;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #161b22;
-    color: #8b949e;
-    margin-top: 50px;
-    font-size: 0.9rem;
+/* Animaties */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
-footer a {
+/* Alleen tekst van het blok blauw bij hover */
+.portfolio-item:hover .info,
+.instagram-reel:hover,
+.youtube-video:hover .info,
+header:hover {
     color: #58a6ff;
+    transition: color 0.3s ease;
 }
 
-footer a:hover {
-    color: #1f6feb;
+/* Stijl voor "My short form content" */
+.centered-text {
+    font-size: 2rem;
+    /* Grotere tekst */
+    font-weight: bold;
+    color: #ffffff;
+    /* Witte tekstkleur */
+    text-align: center;
+    /* Horizontaal gecentreerd */
 }
 
-/* Responsieve stijlen */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
+/* YouTube Shorts */
+.youtube-shorts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.youtube-short {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 9 / 16;
+    background: linear-gradient(145deg, #1c1f26, #21252d);
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.youtube-short:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+.youtube-short iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.youtube-short .info {
+    padding: 15px;
+    text-align: center;
+    color: #8b949e;
+}
+
+.youtube-short .info h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+.youtube-short .info p {
+    font-size: 1rem;
+}
+
+@keyframes fadeInDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
     }
 
-    header p {
-        font-size: 1rem;
-    }
-
-    .portfolio-item iframe {
-        height: 180px;
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
-/* Instagram-reels sectie */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes textGlow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px #58a6ff, 0 0 10px #58a6ff;
+    }
+
+    50% {
+        text-shadow: 0 0 15px #1f6feb, 0 0 30px #1f6feb;
+    }
+}
+
+/* Instagram-reels */
 .instagram-reels {
     display: flex;
     justify-content: center;
@@ -126,56 +219,23 @@ footer a:hover {
 .instagram-reel {
     width: 100%;
     max-width: 300px;
-    /* Zorgt voor consistentie */
     aspect-ratio: 9 / 16;
-    /* Verhouding voor Reels */
     border: 1px solid #30363d;
     border-radius: 10px;
-    /* Zachte randen */
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Licht schaduw-effect */
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .instagram-reel:hover {
-    transform: scale(1.03);
-    /* Klein hover-effect */
+    transform: rotate(2deg) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-.instagram-reel iframe {
-    width: 100%;
-    height: 500px;
-    border: none;
-}
-
-/* Titel of omschrijving onder reels */
-.instagram-reel-title {
-    text-align: center;
-    color: #c9d1d9;
-    font-size: 1rem;
-    margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-    .instagram-reel {
-        max-width: 200px;
-        /* Kleinere breedte op mobiele apparaten */
-    }
-}
-
-@media (max-width: 768px) {
-    .youtube-video iframe {
-        height: 180px;
-        /* Kleinere hoogte voor mobiel */
-    }
-}
-
-/* YouTube-video sectie */
+/* YouTube-video */
 .youtube-videos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* Past zich aan de schermgrootte aan */
     gap: 20px;
     margin-top: 30px;
     padding: 0 20px;
@@ -183,28 +243,21 @@ footer a:hover {
 
 .youtube-video {
     background: linear-gradient(145deg, #1c1f26, #21252d);
-    /* Dynamische achtergrond met subtiele gradient */
     border: 1px solid #30363d;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .youtube-video:hover {
-    transform: scale(1.05) translateY(-10px);
-    /* Vergroting en zweven bij hover */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(145deg, #21252d, #1c1f26);
-    /* Omkering van de gradient bij hover */
+    transform: scale(1.1) translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
 }
 
 .youtube-video iframe {
     width: 100%;
     height: 350px;
     border: none;
-    border-radius: 15px 15px 0 0;
-    /* Alleen bovenste hoeken afgerond */
 }
 
 .youtube-video .info {
@@ -212,27 +265,41 @@ footer a:hover {
     text-align: center;
 }
 
-.youtube-video .info h3 {
-    font-size: 1.4rem;
-    color: #ffffff;
-    margin: 0 0 10px;
-    transition: color 0.4s ease;
-    /* Tekstkleur verandert soepel */
-}
-
-.youtube-video:hover .info h3 {
-    color: #58a6ff;
-    /* Kleurverandering bij hover */
-}
-
-.youtube-video .info p {
-    font-size: 1rem;
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #161b22;
     color: #8b949e;
-    transition: color 0.4s ease;
-    /* Tekstkleur verandert soepel */
+    margin-top: 50px;
+    font-size: 0.9rem;
+    animation: fadeIn 2s ease;
 }
 
-.youtube-video:hover .info p {
-    color: #c9d1d9;
-    /* Lichtere kleur bij hover */
+footer a {
+    color: #58a6ff;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer a:hover {
+    color: #1f6feb;
+    transform: scale(1.1);
+}
+
+.instagram-media {
+    max-width: 300px;
+    margin: auto;
+    overflow: hidden;
+    /* Verberg alles buiten de hoogte */
+    border-radius: 10px;
+    /* Voor mooie afgeronde hoeken */
+}
+
+.instagram-media iframe,
+.instagram-media blockquote {
+    width: 100%;
+    height: 500px;
+    /* Alleen het zichtbare deel van de Instagram-embed tonen */
+    pointer-events: none;
+    /* Verwijder klikfunctionaliteit indien nodig */
 }
