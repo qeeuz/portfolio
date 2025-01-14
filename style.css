@@ -303,3 +303,93 @@ footer a:hover {
     pointer-events: none;
     /* Verwijder klikfunctionaliteit indien nodig */
 }
+
+/* Media query voor apparaten met een breedte kleiner dan 768px */
+@media (max-width: 768px) {
+    header {
+        padding: 30px 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        /* Kleiner lettertype voor mobiel */
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .portfolio {
+        padding: 0 10px;
+        gap: 10px;
+        /* Minder ruimte tussen items */
+    }
+
+    .portfolio-item iframe {
+        height: 200px;
+        /* Minder hoge iframe voor mobiel */
+    }
+
+    .portfolio-item .info h3 {
+        font-size: 1.2rem;
+        /* Kleiner lettertype voor titels */
+    }
+
+    .portfolio-item .info p {
+        font-size: 0.9rem;
+        /* Kleiner lettertype voor beschrijvingen */
+    }
+
+    .youtube-shorts,
+    .instagram-reels,
+    .youtube-videos {
+        gap: 10px;
+    }
+
+    .youtube-short,
+    .instagram-reel {
+        max-width: 100%;
+        /* Laat elementen de volledige breedte gebruiken */
+        aspect-ratio: 9 / 16;
+        /* Houd verhoudingen intact */
+    }
+
+    .youtube-video iframe {
+        height: 250px;
+        /* Lagere hoogte voor video's */
+    }
+
+    footer {
+        font-size: 0.8rem;
+        /* Kleiner lettertype in de footer */
+    }
+}
+
+/* Media query voor apparaten met een breedte kleiner dan 480px */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .portfolio-item .info h3 {
+        font-size: 1rem;
+    }
+
+    .portfolio-item .info p {
+        font-size: 0.8rem;
+    }
+
+    .youtube-video iframe {
+        height: 200px;
+        /* Nog lagere hoogte voor zeer kleine schermen */
+    }
+
+    footer {
+        padding: 10px;
+        font-size: 0.7rem;
+    }
+}
